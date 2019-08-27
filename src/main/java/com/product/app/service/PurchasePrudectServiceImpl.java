@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.product.app.dto.PurchesDetailsDto;
+import com.product.app.dto.UploadFileResponseDto;
 import com.product.app.entity.Customer;
 import com.product.app.entity.ProductPurchase;
 import com.product.app.repository.CustomerRepository;
+import com.product.app.repository.ProductRepository;
 import com.product.app.repository.PurchaseRepository;
 
 /**
@@ -29,12 +31,16 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
 	@Override
-	public String purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
+	public UploadFileResponseDto purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
 	
 		LOGGER.info(" PurchasePrudectServiceImpl :: purchaseProduct ");
 		Customer customer = new Customer();
+		UploadFileResponseDto response = new UploadFileResponseDto();
 		
 		BeanUtils.copyProperties(purchesDetailsDto, customer);
 		
@@ -52,7 +58,10 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 		
 		purchaseRepository.save(productPurchase);
 		
-		return "Purchased successfully.";
+		response.setMessage("Purchased successfully.");
+		response.setStatusCode(201);
+		
+		return response;
 	}
 
 }
