@@ -11,5 +11,9 @@ import com.product.app.entity.ProductCategory;
  */
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer>{
+	
+	
+	public ProductCategory findByCategoryName(String name);
+	
 
 }
