@@ -19,15 +19,15 @@ import lombok.Data;
 @Entity
 @Table
 public class Product implements Serializable {
-	
+
 	private static final long serialVersionUID = 7771935079393339855L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	private int productId;
 	private int categoryId;
 	private String productName;
 	private String productDescription;
 	private double charges;
 
-	
 }
