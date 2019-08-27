@@ -48,7 +48,7 @@ public class ProductController {
 	public ResponseEntity<UploadFileResponseDto> purchaseProduct(@RequestBody PurchesDetailsDto purchesDetailsDto) {
 
 		LOGGER.info("ProductController  purchaseProduct() ={} ", purchesDetailsDto);
-		return new ResponseEntity<>(purchaseService.purchaseProduct(purchesDetailsDto), HttpStatus.OK);
+		return new ResponseEntity<>(purchaseService.purchaseProduct(purchesDetailsDto), HttpStatus.CREATED);
 
 	}
 
