@@ -1,4 +1,4 @@
-package com.hcl.bankproduct.util;
+package com.product.app.util;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.product.app.dto.UploadFileResponseDto;
 import com.product.app.entity.Product;
+import com.product.app.entity.ProductCategory;
+import com.product.app.repository.ProductCategoryRepository;
 import com.product.app.repository.ProductRepository;
 
 @Component
@@ -25,15 +27,22 @@ public class ExcelImportToDB {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private ProductCategoryRepository productCategoryRepository;
 
 	public UploadFileResponseDto loadDataToDB(MultipartFile file) {
 
+		System.out.println("in service");
+		
 		UploadFileResponseDto response = new UploadFileResponseDto();
 		FileInputStream input = null;
 		XSSFSheet sheet = null;
 		XSSFWorkbook workbook=null;
 		try {
 
+			
+			System.out.println("in service");
 
 			workbook =new XSSFWorkbook(file.getInputStream());
 
@@ -41,7 +50,6 @@ public class ExcelImportToDB {
 
 			Iterator<Row> rowIterator = sheet.iterator();
 
-			List<Product> transactionList=new ArrayList<>();
 			Row row;
 			int result = 0;
 			while (rowIterator.hasNext()) {
@@ -50,30 +58,38 @@ public class ExcelImportToDB {
 					result = 1;
 				} else {
 				
-					int productId = (int) row.getCell(0).getNumericCellValue();
-					String productNm = row.getCell(1).getStringCellValue();
-					String productDes = row.getCell(2).getStringCellValue();
-					double productNav = row.getCell(3).getNumericCellValue();
-					int rating =  (int)row.getCell(4).getNumericCellValue();
-					int brokerage = (int)row.getCell(5).getNumericCellValue();
-					
-					logger.info(brokerage);					
-					
-					/*
-					 * Product product=new Product(); product.setProductId(productId);
-					 * product.setProductName(productNm); product.setProductDescription(productDes);
-					 * product.setProductNav(productNav); product.setRating(rating);
-					 * product.setBrokerage(brokerage);
-					 */
+					Product product =new Product();
+					ProductCategory productCategoryRepo=new ProductCategory();
+					System.out.println("in service");
+					String productCategory = row.getCell(1).getStringCellValue();
+					String productName=row.getCell(2).getStringCellValue();
+					String productCharges = row.getCell(3).getStringCellValue();
+					String prodDesc =  row.getCell(4).getStringCellValue();
 					
 					
-					//transactionList.add(product);
+					System.out.println(productCharges);
+					
+					productCategoryRepo.setCategoryName(productCategory);
+					productCategoryRepository.save(productCategoryRepo);
+					
+					ProductCategory responseProd=productCategoryRepository.findByCategoryName(productCategory);
+					
+					product.setCategoryId(responseProd.getCategoryId());
+					//product.setCharges(productCharges);
+					product.setProductDescription(prodDesc);
+					product.setProductName(productName);
+					
+					
+					
+					response.setMessage("success");
+					response.setStatusCode(200);
+					
+					
 					
 				}
 
 			}
-			productRepository.saveAll(transactionList);
-			response.setMessage("success");
+			
 		} catch (Exception e) {
 			logger.error(this.getClass().getName() + " loadDataToDB : " + e.getMessage());
 		} finally {

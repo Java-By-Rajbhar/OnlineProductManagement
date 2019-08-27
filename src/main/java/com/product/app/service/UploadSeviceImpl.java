@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hcl.bankproduct.util.ExcelImportToDB;
 import com.product.app.dto.UploadFileResponseDto;
+import com.product.app.util.ExcelImportToDB;
 
 @Service
 public class UploadSeviceImpl implements UploadService {
@@ -22,8 +22,8 @@ public class UploadSeviceImpl implements UploadService {
 	@Override
 	public UploadFileResponseDto uploadFile(MultipartFile file) {
 
-		excelImport.loadDataToDB(file);
-		return null;
+		
+		return excelImport.loadDataToDB(file);
 	}
 
 }
