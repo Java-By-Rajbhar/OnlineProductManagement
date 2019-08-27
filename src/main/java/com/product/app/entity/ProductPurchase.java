@@ -29,6 +29,6 @@ public class ProductPurchase {
 	private Integer productId;
 	private Integer customerId;
 	private String purchaseDate;
-//	private String remarks;
+
 	
 }

@@ -25,7 +25,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	@Override
 	public List<ProductCategoryResponse> getAllProductCategory() {
 		LOGGER.info("Inside getAllProductCategory method of ProductCategoryServiceImpl class");
-		List<ProductCategoryResponse> listCategoryResponse = new ArrayList<ProductCategoryResponse>();
+		List<ProductCategoryResponse> listCategoryResponse = new ArrayList<>();
 		List<ProductCategory> listCategory = productCategoryRepository.findAll();
 		for (ProductCategory productCategory : listCategory) {
 			ProductCategoryResponse response = new ProductCategoryResponse();
