@@ -22,7 +22,7 @@ public class UploadSeviceImpl implements UploadService {
 	@Override
 	public UploadFileResponseDto uploadFile(MultipartFile file) {
 
-		
+		System.out.println(file.getOriginalFilename());
 		return excelImport.loadDataToDB(file);
 	}
 
