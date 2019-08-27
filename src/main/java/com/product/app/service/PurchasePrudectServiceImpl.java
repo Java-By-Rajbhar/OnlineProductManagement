@@ -58,10 +58,6 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 		
 		purchaseRepository.save(productPurchase);
 		
-/*		Product product = productRepository.findAllByProductId(purchesDetailsDto.getProductId());
-		String textBody = EmailMesssageBuilder.getMessage(purchesDetailsDto.getFirstName(), product.getProductName());
-		EmailDto emailDto = new EmailDto(purchesDetailsDto.getEmail(), "Confirmation for purches", textBody);
-		emailService.sendMail(emailDto);*/
 		response.setMessage("Purchased successfully.");
 		response.setStatusCode(201);
 		return response;
