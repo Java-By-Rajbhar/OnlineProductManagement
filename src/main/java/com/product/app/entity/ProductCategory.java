@@ -10,19 +10,16 @@ import lombok.Data;
 
 /**
  * 
- * @author Sushil
+ * @author 
  *
  */
 @Data
 @Entity
 @Table
-public class Product {
+public class ProductCategory {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int productId;
 	private int categoryId;
-	private String productName;
-	private String productDescription;
-	private double charges;
+	private String categoryName;
 }
