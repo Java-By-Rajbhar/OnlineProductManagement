@@ -19,6 +19,7 @@ import com.product.app.dto.ProductCategoryResponse;
 import com.product.app.dto.ProductDetailsResponseDTO;
 import com.product.app.dto.ProductResponseDto;
 import com.product.app.dto.PurchesDetailsDto;
+import com.product.app.dto.UploadFileResponseDto;
 import com.product.app.service.ProductCategoryService;
 import com.product.app.service.ProductService;
 import com.product.app.service.PurchaseService;
@@ -44,10 +45,10 @@ public class ProductController {
 	ProductService productService;
 
 	@PostMapping("/product")
-	public ResponseEntity<String> purchaseProduct(@RequestBody PurchesDetailsDto purchesDetailsDto) {
+	public ResponseEntity<UploadFileResponseDto> purchaseProduct(@RequestBody PurchesDetailsDto purchesDetailsDto) {
 
 		LOGGER.info("ProductController :: purchaseProduct() -- " + purchesDetailsDto);
-		return new ResponseEntity<String>(purchaseService.purchaseProduct(purchesDetailsDto), HttpStatus.OK);
+		return new ResponseEntity<>(purchaseService.purchaseProduct(purchesDetailsDto),HttpStatus.CREATED);
 	}
 
 	@GetMapping("/category")

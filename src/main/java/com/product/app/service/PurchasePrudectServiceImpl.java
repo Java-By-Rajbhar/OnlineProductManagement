@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.product.app.dto.PurchesDetailsDto;
+import com.product.app.dto.UploadFileResponseDto;
 import com.product.app.entity.Customer;
 import com.product.app.entity.ProductPurchase;
 import com.product.app.repository.CustomerRepository;
@@ -39,10 +40,11 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 	private EmailService emailService;
 
 	@Override
-	public String purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
+	public UploadFileResponseDto purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
 	
 		LOGGER.info(" PurchasePrudectServiceImpl :: purchaseProduct ");
 		Customer customer = new Customer();
+		UploadFileResponseDto response = new UploadFileResponseDto();
 		
 		BeanUtils.copyProperties(purchesDetailsDto, customer);
 		
@@ -64,7 +66,9 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 		String textBody = EmailMesssageBuilder.getMessage(purchesDetailsDto.getFirstName(), product.getProductName());
 		EmailDto emailDto = new EmailDto(purchesDetailsDto.getEmail(), "Confirmation for purches", textBody);
 		emailService.sendMail(emailDto);*/
-		return "Purchased successfully.";
+		response.setMessage("Purchased successfully.");
+		response.setStatusCode(201);
+		return response;
 	}
 
 }
