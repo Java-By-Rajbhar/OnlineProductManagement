@@ -1,5 +1,7 @@
 package com.product.app.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +18,16 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 7771935079393339855L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
+	private int categoryId;
 	private String productName;
-	private String description;
-	private double price;
+	private String productDescription;
+	private double charges;
+
 }

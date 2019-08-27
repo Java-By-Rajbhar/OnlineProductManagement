@@ -22,6 +22,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<ResponseError>(error, HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(ProductNotFoundException.class)
+	public ResponseEntity<ResponseError> ProductNotFoundExceptionHandler(ProductNotFoundException ex)
+	{
+		ResponseError error =  new ResponseError(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<ResponseError>(error, HttpStatus.NOT_FOUND);
+	}
 
 	
 

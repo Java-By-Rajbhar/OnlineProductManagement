@@ -9,5 +9,8 @@ import lombok.Data;
  */
 @Data
 public class ProductResponseDto {
+	private int productId ;
+	private int categoryId ;
+	private String productName;
 
 }
