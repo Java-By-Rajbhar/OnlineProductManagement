@@ -13,7 +13,9 @@ import com.product.app.dto.PurchesDetailsDto;
 import com.product.app.entity.Customer;
 import com.product.app.entity.ProductPurchase;
 import com.product.app.repository.CustomerRepository;
+import com.product.app.repository.ProductRepository;
 import com.product.app.repository.PurchaseRepository;
+import com.product.app.utility.EmailService;
 
 /**
  * @author Laxman
@@ -29,6 +31,12 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public String purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
@@ -52,6 +60,10 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 		
 		purchaseRepository.save(productPurchase);
 		
+/*		Product product = productRepository.findAllByProductId(purchesDetailsDto.getProductId());
+		String textBody = EmailMesssageBuilder.getMessage(purchesDetailsDto.getFirstName(), product.getProductName());
+		EmailDto emailDto = new EmailDto(purchesDetailsDto.getEmail(), "Confirmation for purches", textBody);
+		emailService.sendMail(emailDto);*/
 		return "Purchased successfully.";
 	}
 
