@@ -76,6 +76,14 @@
 			<type>pom</type>
 		</dependency>
 	</dependencies>
+	
+	<distributionManagement>
+         <snapshotRepository>
+       <id>nexus</id>
+       <url>http://13.235.115.239:8081/nexus/content/repositories/nexus/</url>
+      </snapshotRepository>
+      </distributionManagement>
+	
 	<build>
 		<plugins>
 			<plugin>
