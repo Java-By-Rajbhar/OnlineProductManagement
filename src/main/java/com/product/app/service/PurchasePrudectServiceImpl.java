@@ -52,7 +52,7 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 		
 		purchaseRepository.save(productPurchase);
 		
-		return null;
+		return "Purchased successfully.";
 	}
 
 }
