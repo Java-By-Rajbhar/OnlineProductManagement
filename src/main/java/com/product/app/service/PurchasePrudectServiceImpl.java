@@ -16,7 +16,6 @@ import com.product.app.entity.ProductPurchase;
 import com.product.app.repository.CustomerRepository;
 import com.product.app.repository.ProductRepository;
 import com.product.app.repository.PurchaseRepository;
-import com.product.app.utility.EmailService;
 
 /**
  * @author Laxman
@@ -36,9 +35,6 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Autowired
-	private EmailService emailService;
-
 	@Override
 	public UploadFileResponseDto purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
 	
