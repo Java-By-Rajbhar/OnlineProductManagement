@@ -20,6 +20,7 @@ import com.product.app.dto.ProductCategoryResponse;
 import com.product.app.dto.ProductDetailsResponseDTO;
 import com.product.app.dto.ProductResponseDto;
 import com.product.app.dto.PurchesDetailsDto;
+import com.product.app.dto.UploadFileResponseDto;
 import com.product.app.service.ProductCategoryService;
 import com.product.app.service.ProductService;
 import com.product.app.service.PurchaseService;
@@ -34,7 +35,7 @@ import com.product.app.service.PurchaseService;
 @CrossOrigin(allowedHeaders = { "*", "/" }, origins = { "*", "/" })
 public class ProductController {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 	@Autowired
 	private PurchaseService purchaseService;
 
@@ -45,17 +46,18 @@ public class ProductController {
 	ProductService productService;
 
 	@PostMapping("/product")
-	public ResponseEntity<String> purchaseProduct(@RequestBody PurchesDetailsDto purchesDetailsDto) {
+	public ResponseEntity<UploadFileResponseDto> purchaseProduct(@RequestBody PurchesDetailsDto purchesDetailsDto) {
 
-		LOGGER.info("ProductController :: purchaseProduct() -- " + purchesDetailsDto);
-		return new ResponseEntity<String>(purchaseService.purchaseProduct(purchesDetailsDto), HttpStatus.OK);
+		LOGGER.info("ProductController  purchaseProduct() ={} ", purchesDetailsDto);
+		return new ResponseEntity<>(purchaseService.purchaseProduct(purchesDetailsDto), HttpStatus.CREATED);
+
 	}
 
 	@GetMapping("/category")
 	public ResponseEntity<List<ProductCategoryResponse>> getProductCategories() {
 		LOGGER.info("Inside getProductCategories method of ProductController class");
 		List<ProductCategoryResponse> response = productCategoryService.getAllProductCategory();
-		return new ResponseEntity<List<ProductCategoryResponse>>(response, HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/category/{categoryId}")
