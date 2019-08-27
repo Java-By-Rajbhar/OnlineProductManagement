@@ -41,6 +41,7 @@ public class TestPurchaseController {
 	@Test
 	public void testPurchaseProduct() throws JsonProcessingException, Exception {
 		mockMvc.perform(post("/api/product").contentType(MediaType.APPLICATION_JSON).accept(MediaType.ALL).content(new ObjectMapper().writeValueAsString(purchesDetailsDto))).andExpect(status().isCreated());
+		
 	}
 	
 	
