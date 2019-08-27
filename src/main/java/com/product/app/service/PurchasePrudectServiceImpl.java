@@ -37,13 +37,7 @@ public class PurchasePrudectServiceImpl implements PurchaseService {
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-<<<<<<< HEAD
 	ProductRepository productRepository;
-
-=======
-	private ProductRepository productRepository;
-	
->>>>>>> d434f3b94206f3a9b8a5482ba5aa71c8612c092d
 	@Override
 	public UploadFileResponseDto purchaseProduct(PurchesDetailsDto purchesDetailsDto) {
 	
