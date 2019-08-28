@@ -13,7 +13,6 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ProductResponseDto {
 	private int productId ;
