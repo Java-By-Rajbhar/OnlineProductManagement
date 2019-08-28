@@ -2,14 +2,20 @@ package com.product.app.dto;
 
 import java.util.List;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 
  * @author Sushil
  *
  */
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductAnalysisResponseDto {
 	
 	private List<Integer> productCount;
