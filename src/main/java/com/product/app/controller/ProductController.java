@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.product.app.dto.ProductAnalysisResponseDto;
 import com.product.app.dto.ProductCategoryResponse;
 import com.product.app.dto.ProductDetailsResponseDTO;
 import com.product.app.dto.ProductResponseDto;
@@ -73,5 +74,12 @@ public class ProductController {
 		ProductDetailsResponseDTO productDetails = productService.getProductDetails(productId);
 		return new ResponseEntity<>(productDetails, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("/analysis/{currentDate}")
+	public ResponseEntity<ProductAnalysisResponseDto> analysis(@PathVariable String currentDate)
+	{
+		ProductAnalysisResponseDto response = purchaseService.analysis(currentDate);
+		return new ResponseEntity<ProductAnalysisResponseDto>(response, HttpStatus.OK);
 	}
 }
